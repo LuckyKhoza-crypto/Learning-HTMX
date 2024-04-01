@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-*i!ulr@1d0@z8g+0*$z7@ot8p+=dw5@20fve!%*+jm5i*@ppbh
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ["https://htmx-django.up.railway.app/"]
 
 
 # Application definition
