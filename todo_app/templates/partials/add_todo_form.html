@@ -1,0 +1,14 @@
+<form
+  hx-post="{% url 'add_form' %}"
+  hx-target="#todo_list"
+  hx-swap="afterbegin"
+  hx-on="htmx:afterRequest: this.delete()"
+  hx-trigger="click from:#add_all"
+>
+  <div>
+    <div class="col-8 col-md-12 col-sm-12 d-flex justify-content-center">
+      <label class="m-2 align-self-start"> {{ form.name.label }}</label>
+      {{ form.name }}
+    </div>
+  </div>
+</form>

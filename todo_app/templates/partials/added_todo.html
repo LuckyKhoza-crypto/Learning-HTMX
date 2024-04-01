@@ -1,0 +1,15 @@
+<li
+  class="col-12 col-md-12 col-sm-12 m-2 list-unstyled"
+  hx-target="this"
+  hx-swap="outerHTML"
+>
+  <a class="text-decoration-none text-black bg-info rounded-3 p-2">
+    {{ added_todo.name }}
+  </a>
+  <button
+    class="btn btn-warning m-2"
+    hx-get="{% url 'edit_click' added_todo.id %}"
+  >
+    edit
+  </button>
+</li>
