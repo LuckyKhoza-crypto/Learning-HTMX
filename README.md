@@ -25,23 +25,23 @@ Before you begin, ensure you have the following tools installed:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/DjangoHTMXToDo.git
-   cd DjangoHTMXToDo
+   git clone https://github.com/LuckyKhoza-crypto/Learning-HTMX.git
+   cd Learning\HTMX
 2. **Set up a virtual environment (Optional)**
     ```bash
    python -m venv myenv
-   source myenv/bin/activate  # On Windows, use `myenv\Scripts\activate`
+   source myenv\Scripts\activate  # On Windows, use ``
 
 3. **Install the required packages**
-  ```bash
-   pip install -r requirements.txt
+     ```bash
+    pip install -r requirements.txt
 
 4. **Run migrations to set up your database**
-  ```bash
-   python manage.py migrate
+     ```bash
+     manage.py migrate
 5. **Start the development server**
-  ```bash
-   python manage.py runserver
+    ```bash
+     python manage.py runserver
 
 
 
