@@ -6,10 +6,16 @@
   <a class="text-decoration-none text-black bg-info rounded-3 p-2">
     {{ added_todo.name }}
   </a>
+  <button class="btn m-1" hx-get="{% url 'edit_click' added_todo.id %}">
+    <i class="fa-solid fa-pen-to-square fs-5 text-warning"></i>
+  </button>
+
   <button
-    class="btn btn-warning m-2"
-    hx-get="{% url 'edit_click' added_todo.id %}"
+    class="btn m-1"
+    hx-delete="{% url 'delete_todo' added_todo.id %}"
+    hx-target="#todo_list"
+    hx-confirm="are you sure?"
   >
-    edit
+    <i class="fa-solid fa-trash fs-5 text-danger"></i>
   </button>
 </li>

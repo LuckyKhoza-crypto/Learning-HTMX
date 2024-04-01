@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .forms import TaskForm
-from .models import Task, Tester
+from .models import Task
+from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 
@@ -10,10 +11,11 @@ def index(request):
     context = {
         'form': TaskForm(),
         'todos': Task.objects.all().order_by('-id'),
-        'tests': Tester.objects.all(),
+
     }
 
     return render(request, 'index.html', context)
+
 
 def add_form(request):
 
@@ -30,6 +32,20 @@ def add_form(request):
             return render(request, 'partials/added_todo.html', context)
 
     return render(request, 'partials/add_todo_form.html', {'form': TaskForm()})
+
+
+@require_http_methods(['DELETE'])
+def delete_todo(request, pk):
+    todo = get_object_or_404(Task, pk=pk)
+    todo.delete()
+
+    context = {
+        'todos': Task.objects.all().order_by('-id'),
+        'form': TaskForm()
+    }
+
+    return render(request, 'partials/todo_list.html', context)
+
 
 def edit_click(request, pk):
 

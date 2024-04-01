@@ -1,0 +1,6 @@
+<div class="col-12 col-md-12 col-sm-6 d-flex justify-content-center">
+    <ul class="bg-dark p-3 rounded-3" id="todo_list">
+      {% for added_todo in todos %}{% include 'partials/added_todo.html' %}
+      {%endfor %}
+    </ul>
+  </div>
