@@ -2,7 +2,7 @@
   hx-post="{% url 'add_form' %}"
   hx-target="#todo_list"
   hx-swap="afterbegin"
-  hx-on="htmx:afterRequest: this.delete()"
+  hx-on="htmx:afterRequest: this.remove()"
   hx-trigger="click from:#add_all"
 >
   <div>
