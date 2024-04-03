@@ -1,0 +1,13 @@
+{% load static %}
+<div>
+    <h3 class="text-start mb-2" > {{ post.title| title }} </h1>
+    <span class="text-info">Posted
+        {{ post.created_date | timesince}}
+        ago by
+        {{ post.author |title }}</span>
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+    {% endif %}
+    <p>{{ post.content |safe }}</p>
+</div>

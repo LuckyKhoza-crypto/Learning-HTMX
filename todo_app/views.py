@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from .forms import TaskForm
-from .models import Task
+from .models import Task, Post
 from django.views.decorators.http import require_http_methods
+from django.views.generic.list import ListView
 
 # Create your views here.
 
@@ -68,3 +69,25 @@ def edit_click(request, pk):
         task.save()
 
         return render(request, 'partials/added_todo.html', {'added_todo': task})
+
+
+class BlogListView(ListView):
+
+    model = Post
+    template_name = 'blog.html'
+    context_object_name = 'posts'  # name of the object that will be used in the template
+    ordering = ['-created_date']  # ordering the posts by date_posted
+
+    def get_queryset(self):
+        return Post.objects.filter(status='published').order_by('-created_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post_details_url'] = 'post_details'
+        return context
+
+
+def post_details(request, pk):
+    if request.method == 'GET':
+        post = get_object_or_404(Post, pk=pk)
+        return render(request, 'partials/blog/post_details.html', {'post': post})
