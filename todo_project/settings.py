@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-*i!ulr@1d0@z8g+0*$z7@ot8p+=dw5@20fve!%*+jm5i*@ppbh
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["https://htmx-django.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://htmx-django1.up.railway.app"]
 
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
@@ -123,8 +123,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
