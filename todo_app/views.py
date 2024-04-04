@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from .forms import TaskForm
-from .models import Task, Post
+from .models import Task, Post, Event
 from django.views.decorators.http import require_http_methods
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 
@@ -76,18 +77,18 @@ class BlogListView(ListView):
     model = Post
     template_name = 'blog.html'
     context_object_name = 'posts'  # name of the object that will be used in the template
-    ordering = ['-created_date']  # ordering the posts by date_posted
+    ordering = '-created_date'  # ordering the posts by date_posted
 
     def get_queryset(self):
-        return Post.objects.filter(status='published').order_by('-created_date')
+        return Post.objects.filter(status='published').order_by(self.ordering)
+
+
+class PostDetailsView(DetailView):
+    model = Post
+    template_name = 'partials/blog/post_details.html'
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
-        context['post_details_url'] = 'post_details'
+        context['events'] = context['post'].events.all()
         return context
-
-
-def post_details(request, pk):
-    if request.method == 'GET':
-        post = get_object_or_404(Post, pk=pk)
-        return render(request, 'partials/blog/post_details.html', {'post': post})

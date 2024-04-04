@@ -1,6 +1,6 @@
 {% load static %}
 <div>
-    <h3 class="text-start mb-2" > {{ post.title| title }} </h1>
+    <h3 class="text-center mb-2" > {{ post.title| title }} </h1>
     <span class="text-info">Posted
         {{ post.created_date | timesince}}
         ago by
@@ -9,5 +9,21 @@
     {% if post.image %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
     {% endif %}
-    <p>{{ post.content |safe }}</p>
+    <text class="fs-5">{{ post.content |safe }}</text>
+    {% if events %}
+        <div>
+            <h3>Events</h3>
+            <ul>
+                {% for event in events %}
+                    <li>{{event.date| date:"N j, y"}} - {{event.time| date:"H:i"}}, {{event.location | title}} - {{ event.name }} <span> organized by {{ event.organizer }}</span>
+                        <p>
+                            {{event.description | safe}}
+                        </p>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    {% endif %}
+    <div></div>
 </div>
